@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in - Code Sentinels WLB</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+  <main class="login-card">
+    <div class="brand big">Code Sentinels</div>
+    <p class="muted">Work-life balance ERP &middot; sign in to continue</p>
+    <form id="loginForm" autocomplete="on">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <div id="err" class="error" role="alert" hidden></div>
+      <button class="btn-primary wide" id="loginBtn" type="submit">Sign in</button>
+    </form>
+    <p class="muted small" style="margin-top:6px">
+      New employee? <a href="/register.html">Create an account</a>
+    </p>
+    <p class="muted small">Trouble signing in? Ask your HR team or administrator to reset your password.</p>
+  </main>
+  <script src="login.js"></script>
+</body>
+</html>

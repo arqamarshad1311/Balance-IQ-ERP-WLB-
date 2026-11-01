@@ -1,0 +1,31 @@
+# Render Blueprint: New + -> Blueprint -> pick this repo. Creates the database and the website.
+databases:
+  - name: erp-db
+    plan: free
+    databaseName: erp
+    user: erp_user
+
+services:
+  - type: web
+    name: balanceiq-erp
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips="*"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: WLB_ENV
+        value: production
+      - key: WLB_SECRET_KEY
+        generateValue: true
+      - key: WLB_DATABASE_URL
+        fromDatabase:
+          name: erp-db
+          property: connectionString
+      - key: WLB_ADMIN_PASSWORD
+        sync: false          # you type this in the Render dashboard (8+ chars, letters and digits)
+      # - key: WLB_SEED_DEMO  # uncomment (value "1") for a demo site with sample people
+      #   value: "1"

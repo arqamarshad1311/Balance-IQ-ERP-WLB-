@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Code Sentinels WLB</title></head>
+<body>
+<script>
+  // Send people to the app if they are signed in, otherwise to the login page.
+  fetch("/api/auth/me", {credentials: "same-origin"})
+    .then(r => { location.replace(r.ok ? "/app.html" : "/login.html"); })
+    .catch(() => { location.replace("/login.html"); });
+</script>
+<noscript><a href="/login.html">Continue to login</a></noscript>
+</body></html>
